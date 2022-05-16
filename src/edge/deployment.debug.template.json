@@ -37,7 +37,7 @@
                   "PortBindings": {
                     "5671/tcp": [{"HostPort": "5671"}],
                     "8883/tcp": [{"HostPort": "8883"}],
-                    "443/tcp": [{"HostPort": "443"}]
+                    "666/tcp": [{"HostPort": "666"}]
                   }
                 }
               }
@@ -51,7 +51,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.IdentityTranslationLite.debug}",
+              "image": "${MODULES.IdentityTranslationLite.arm32v7.debug}",
               "createOptions": {}
             }
           },
@@ -80,7 +80,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "eclipse-mosquitto:1.6",
+              "image": "eclipse-mosquitto:2.0.11",
               "createOptions": {
                 "ExposedPorts": {
                   "1883/tcp": {}

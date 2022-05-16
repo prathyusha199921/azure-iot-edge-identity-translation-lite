@@ -30,6 +30,7 @@ class BrokerClient():
         self.client.on_disconnect = self.__on_disconnect
         self.client.on_publish = self.__on_publish
         self.client.loop_start() #starts the client
+        self.client.username_pw_set("guest","Puls01")
         self.client.connect(self.broker_address, self.broker_port, 60)
 
     def __on_connect(self, client, userdata, flags, rc):
@@ -46,6 +47,7 @@ class BrokerClient():
         self.client.subscribe("device/#")
 
     def __on_message(self, client, userdata, msg):
+        print(msg)
         print("Message received: topic={}, payload={}".format(msg.topic, str(msg.payload)))
         self.callback(msg)
         

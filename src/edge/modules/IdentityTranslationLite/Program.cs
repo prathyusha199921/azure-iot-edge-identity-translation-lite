@@ -284,6 +284,8 @@ namespace IdentityTranslationLite
 
             string messageString = Encoding.UTF8.GetString(messageBytes);
             Console.WriteLine($"DEBUG: Original message body: {messageString}");
+            
+
 
             newMessage = new Message(messageBytes);
             foreach (var prop in message.Properties)
@@ -292,6 +294,7 @@ namespace IdentityTranslationLite
                     !prop.Key.Equals(LeafDeviceModuleIdPropertyName, StringComparison.InvariantCultureIgnoreCase))
                 {
                     newMessage.Properties.Add(prop.Key, prop.Value);
+                    Console.WriteLine(newMessage);
                 }
             }
 

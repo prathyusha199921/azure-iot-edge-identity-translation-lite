@@ -53,12 +53,22 @@ def ptm_logic(msg):
     #extracts device_id (expects a topic like: device/{device_id}/message)
     device_id = msg.topic.split("/")[1]
     print("Device ID: {}".format(device_id))
+    payload =  json.loads(msg.payload.decode('utf-8'))
 
     #sending to output
     ptm_output_obj = {
-        "topic": msg.topic,
-        "payload": json.loads(msg.payload.decode('utf-8'))
+       # "topic": msg.topic,
+       # "payload": json.loads(msg.payload.decode('utf-8')),
+       "deviceId": payload["deviceId"],
+       "deviceName": payload["deviceName"],
+       "edgeGatewayId": payload["edgeGatewayId"],
+       "type": payload["type"],
+       "telemetryType": payload["telemetryType"],
+       "events": payload["events"]
+
+
     }
+    print(ptm_output_obj)
     ptm_forward(device_id, ptm_output_obj)
 
 
